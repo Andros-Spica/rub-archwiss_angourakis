@@ -1,0 +1,28 @@
+---
+title: "Session 3 Tasks"
+author: "Andreas Angourakis"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Combining the vectors into a data frame
+stone_tools_data <- data.frame(
+  inventory_number = c("LN15", "LN17", "LN18", "LN21", "LN23", "LN24"),
+  blength = c(18, 14, 21, 14, 17, 16),
+  breadth = c(9, 7, 10, 7, 8, 8),
+  thickness = c(3, 2, 3, 3, 3, 2),
+  material_type = c("chert", "chert", "obsidian", "chert", "obsidian", "obsidian"),
+  material_provenance = c("local", "local", "local", "non-local", "local", "non-local")
+)
+
+# Display the data frame
+knitr::kable(stone_tools_data)
+```
+
+
+
