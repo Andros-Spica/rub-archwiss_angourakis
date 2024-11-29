@@ -48,15 +48,21 @@ stone_tools_data2 <- read.csv("data/stone_tools_data.csv")[, -1]
 Create a plot showing the counts of objects made of chert and obsidian. Save it as a PNG file in “plots” subdirectory.
 
 ```{r}
+plot_name <- "plots/session3_barplot_material_type.png"
+
 stone_tools_data_table_type <- table(stone_tools_data$material_type)
 
-png("plots/session3_barplot_material_type.png")
+png(plot_name)
 
 barplot(stone_tools_data_table_type, 
         main = "Bar Plot of count of artifacts by material type", 
         xlab = "Material type")
 
 dev.off()
+```
+
+```{r}
+knitr::include_graphics(plot_name)
 ```
 
 Create a new variable (“type_and_provenance”) that combines type and provenance 
@@ -68,9 +74,11 @@ stone_tools_data$type_and_provenance <- paste(stone_tools_data$material_type, st
 Create a plot showing the counts in each category. Save it as a PNG file in “plots” subdirectory.
 
 ```{r}
+plot_name <- "plots/session3_barplot_material_type_and_provenance.png"
+
 stone_tools_data_table_type_and_provenance <- table(stone_tools_data$type_and_provenance)
 
-png("plots/session3_barplot_material_type_and_provenance.png", width = 700)
+png(plot_name, width = 700)
 
 barplot(stone_tools_data_table_type_and_provenance, 
         main = "Bar Plot of count of artifacts by material type and provenance", 
@@ -80,12 +88,50 @@ dev.off()
 ```
 
 ```{r}
-png("plots/session3_barplot_material_type_and_provenance_ggplot.png", width = 700)
+knitr::include_graphics(plot_name)
+```
+
+Create a single figure displaying the variable distribution of the three dimensions measured. Save it as both a PNG and a SVG file in “plots” subdirectory.
+
+```{r}
+source("scripts/plotting_function.R")
+
+plot_name <- "plots/session3_histogram_length_breadth_thickness.png"
+
+png(plot_name, width = 700, height = 300)
+
+three_histograms(
+  variable_1 = stone_tools_data$blength,
+  variable_2 = stone_tools_data$breadth,
+  variable_3 = stone_tools_data$thickness,
+  variable_1_main = "Histogram of count of artifacts\nby length of blade",
+  variable_2_main = "Histogram of count of artifacts\nby breadth of blade",
+  variable_3_main = "Histogram of count of artifacts\nby thickness of blade",
+  variable_1_xlab = "Length (mm)",
+  variable_2_xlab = "Breadth (mm)",
+  variable_3_xlab = "Thickness (mm)"
+)
+
+dev.off()
+```
+
+```{r}
+knitr::include_graphics(plot_name)
+```
+
+```{r}
+plot_name <- "plots/session3_barplot_material_type_and_provenance_ggplot.png"
+
+png(plot_name, width = 700)
 
 ggplot(stone_tools_data, aes(x = type_and_provenance)) + 
   geom_bar() + 
   labs(title = "Bar plot of Blade Shape", x = "Blade Shape categories")
 
 dev.off()
+```
+
+```{r}
+knitr::include_graphics(plot_name)
 ```
 
