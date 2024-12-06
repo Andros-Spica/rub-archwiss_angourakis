@@ -1,0 +1,7 @@
+inventory_number,blength,breadth,thickness,material_type,material_provenance
+LN15,18,9,3,chert,local
+LN17,14,7,2,chert,local
+LN18,21,10,3,obsidian,local
+LN21,14,7,3,chert,non-local
+LN23,17,8,3,obsidian,local
+LN24,16,8,2,obsidian,non-local
