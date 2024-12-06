@@ -149,9 +149,32 @@ knitr::include_graphics(plot_name)
 Create a plot displaying the relationship between length and breadth, this time marking (point type, colour) objects by their “type_and_provenance”. Save it as both a PNG and a EPS file in “plots” subdirectory.
 
 ```{r}
+plot_name <- "plots/session3_scatter_length_breadth_type_provenance.png"
 
+color_palette <- c("red", "blue", "green", "black")
+colors_type_provenance <- factor(stone_tools_data$type_and_provenance, labels = color_palette)
+
+png(plot_name, width = 600, height = 400)
+
+plot(stone_tools_data$blength, stone_tools_data$breadth, 
+     col = colors_type_provenance, 
+     pch = as.numeric(factor(stone_tools_data$type_and_provenance)),
+     cex = 3
+     )
+legend("right",
+       unique(stone_tools_data$type_and_provenance),
+       col = color_palette,
+       #pch = 1,
+       pch = 1:4,
+       pt.cex = 3
+       )
+
+dev.off()
 ```
 
+```{r}
+knitr::include_graphics(plot_name)
+```
 
 
 ---
