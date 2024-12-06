@@ -9,10 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-library(ggplot2)
-```
-
 ## Creating, verifying and saving a data frame
 
 Combining the vectors into a data frame
@@ -135,7 +131,9 @@ plot_name <- "plots/session3_scatter_length_breadth.png"
 
 png(plot_name, width = 600, height = 400)
 
-plot(stone_tools_data$blength, stone_tools_data$breadth)
+plot(stone_tools_data$blength, stone_tools_data$breadth,
+     xlab = "Length (mm)", ylab = "Breadth (mm)",
+     pch = 16, cex = 3, cex.lab = 1.5, cex.axis = 1.5)
 
 dev.off()
 ```
@@ -159,15 +157,16 @@ png(plot_name, width = 600, height = 400)
 plot(stone_tools_data$blength, stone_tools_data$breadth, 
      col = colors_type_provenance, 
      pch = as.numeric(factor(stone_tools_data$type_and_provenance)),
-     cex = 3
-     )
+     xlab = "Length (mm)", ylab = "Breadth (mm)",
+     cex = 3, cex.lab = 1.5, cex.axis = 1.5
+)
 legend("right",
        unique(stone_tools_data$type_and_provenance),
        col = color_palette,
        #pch = 1,
        pch = 1:4,
-       pt.cex = 3
-       )
+       pt.cex = 2
+)
 
 dev.off()
 ```
@@ -175,25 +174,3 @@ dev.off()
 ```{r}
 knitr::include_graphics(plot_name)
 ```
-
-
----
-
-
-
-```{r}
-plot_name <- "plots/session3_barplot_material_type_and_provenance_ggplot.png"
-
-png(plot_name, width = 700)
-
-ggplot(stone_tools_data, aes(x = type_and_provenance)) + 
-  geom_bar() + 
-  labs(title = "Bar plot of Blade Shape", x = "Blade Shape categories")
-
-dev.off()
-```
-
-```{r}
-knitr::include_graphics(plot_name)
-```
-
