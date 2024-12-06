@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 ```
 
+## Creating, verifying and saving a data frame
 
 Combining the vectors into a data frame
 
@@ -45,6 +46,8 @@ Load it back as a new R object (e.g. “stone_tools_data2”).
 stone_tools_data2 <- read.csv("data/stone_tools_data.csv")[, -1]
 ```
 
+## Chert vs obisidian tools
+
 Create a plot showing the counts of objects made of chert and obsidian. Save it as a PNG file in “plots” subdirectory.
 
 ```{r}
@@ -64,6 +67,8 @@ dev.off()
 ```{r}
 knitr::include_graphics(plot_name)
 ```
+
+## Material type and provenance
 
 Create a new variable (“type_and_provenance”) that combines type and provenance 
 
@@ -90,6 +95,8 @@ dev.off()
 ```{r}
 knitr::include_graphics(plot_name)
 ```
+
+## Overview of tool dimensions
 
 Create a single figure displaying the variable distribution of the three dimensions measured. Save it as both a PNG and a SVG file in “plots” subdirectory.
 
@@ -118,6 +125,38 @@ dev.off()
 ```{r}
 knitr::include_graphics(plot_name)
 ```
+
+## Length vs breadth
+
+Create a plot displaying the relationship between length and breadth. Save it as a PNG file in “plots” subdirectory.
+
+```{r}
+plot_name <- "plots/session3_scatter_length_breadth.png"
+
+png(plot_name, width = 600, height = 400)
+
+plot(stone_tools_data$blength, stone_tools_data$breadth)
+
+dev.off()
+```
+
+```{r}
+knitr::include_graphics(plot_name)
+```
+
+## Length vs breadth vs type-provenance class
+
+Create a plot displaying the relationship between length and breadth, this time marking (point type, colour) objects by their “type_and_provenance”. Save it as both a PNG and a EPS file in “plots” subdirectory.
+
+```{r}
+
+```
+
+
+
+---
+
+
 
 ```{r}
 plot_name <- "plots/session3_barplot_material_type_and_provenance_ggplot.png"
